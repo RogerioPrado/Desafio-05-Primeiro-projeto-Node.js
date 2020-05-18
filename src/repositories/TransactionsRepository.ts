@@ -25,19 +25,19 @@ class TransactionsRepository {
 
   public getBalance(): Balance {
     const { income, outcome } = this.transactions.reduce(
-      (calculate, trasaction) => {
+      (sum, trasaction) => {
         switch (trasaction.type) {
           case 'income':
-            calculate.income += trasaction.value;
+            sum.income += trasaction.value;
             break;
           case 'outcome':
-            calculate.outcome += trasaction.value;
+            sum.outcome += trasaction.value;
             break;
           default:
             break;
         }
 
-        return calculate;
+        return sum;
       },
       {
         income: 0,
